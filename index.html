@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Pribadi - DerrXyzMods (Ultimate Cyber-Neon)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* -----------------------------------
+    BASE & LAYOUT STYLING
+    -------------------------------------- */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #000000 0%, #111111 100%);
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 0 50px rgba(255, 107, 157, 0.2);
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease;
+      position: relative;
+      border: 1px solid rgba(255, 107, 157, 0.4);
+    }
+
+    /* Music Control Styling */
+    .music-control {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #FF6B9D;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      color: white;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.6);
+      transition: all 0.3s ease;
+    }
+    .music-control:hover {
+      background: #e25585;
+      transform: scale(1.05);
+    }
+    
+    /* Navigasi Styling */
+    nav {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 107, 157, 0.5);
+    }
+    .menu-button {
+        background: #FF6B9D;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 15px;
+        cursor: pointer;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        box-shadow: 0 4px 15px rgba(255, 107, 157, 0.6);
+        transition: all 0.3s ease;
+        margin: 0 10px;
+        display: inline-block;
+        text-decoration: none;
+    }
+    .menu-button:hover {
+        background: #FFD4CA;
+        color: #000;
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 212, 202, 0.8);
+    }
+    .menu-button.active {
+        background: #FFD4CA;
+        color: #000;
+        cursor: default;
+    }
+
+    /* -----------------------------------
+    PROFILE & TYPOGRAPHY STYLING
+    -------------------------------------- */
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 20px rgba(255, 107, 157, 0.8);
+      animation: glowPulse 3s infinite ease-in-out;
+    }
+    .profile-pic:hover {
+      animation: glitch 0.5s infinite alternate;
+      transform: scale(1.1);
+    }
+    @keyframes glitch {
+      0% { transform: translate(1px, 1px) scale(1.1); }
+      25% { transform: translate(-1px, -1px) scale(1.1); }
+      50% { transform: translate(1px, -1px) scale(1.1); }
+      75% { transform: translate(-1px, 1px) scale(1.1); }
+      100% { transform: translate(0, 0) scale(1.1); }
+    }
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 20px rgba(255, 107, 157, 0.6), 0 0 40px rgba(255, 107, 157, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(255, 107, 157, 1), 0 0 80px rgba(255, 107, 157, 0.8); }
+      100% { box-shadow: 0 0 20px rgba(255, 107, 157, 0.6), 0 0 40px rgba(255, 107, 157, 0.4); }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(90deg, #FF6B9D, #FFD4CA, #FF6B9D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: neonText 4s linear infinite;
+      text-shadow: 0 0 10px rgba(255, 107, 157, 0.8);
+      overflow: hidden;
+      border-right: .15em solid #FFD4CA;
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: .15em;
+    }
+    .typewriter-text {
+        animation: 
+            typing 3.5s steps(30, end),
+            blink-caret .75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #FFD4CA; }
+    }
+    @keyframes neonText {
+      0% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+      100% { background-position: 0% center; }
+    }
+    
+    .status {
+      font-size: 1.1rem;
+      color: #FFD4CA;
+      margin: 10px 0 0;
+      font-style: italic;
+      animation: fadeIn 2s ease;
+    }
+    .bio {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease;
+    }
+    section {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 20px;
+      margin-bottom: 40px;
+      box-shadow: 0 0 40px rgba(255, 107, 157, 0.3);
+      animation: fadeInUp 2.5s ease;
+      border: 1px solid rgba(255, 212, 202, 0.3);
+    }
+    h2 {
+      color: #FF6B9D;
+      border-bottom: 3px solid #FFD4CA;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px rgba(255, 212, 202, 0.8);
+    }
+    a {
+      text-decoration: none;
+      color: #FFD4CA;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #FF6B9D;
+      text-shadow: 0 0 10px #FF6B9D;
+    }
+    
+    /* -----------------------------------
+    PROJECT GALLERY & SKILLS
+    -------------------------------------- */
+    .project-gallery {
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 0 25px rgba(255, 107, 157, 0.5);
+        position: relative;
+    }
+    .slider {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+    .project-card {
+        min-width: 100%;
+        box-sizing: border-box;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 2px solid #FF6B9D;
+        border-radius: 15px;
+        text-align: left;
+    }
+    .project-card h3 {
+        color: #FFD4CA;
+        font-size: 1.8rem;
+        margin-top: 0;
+        border-bottom: 1px dashed rgba(255, 212, 202, 0.5);
+        padding-bottom: 10px;
+    }
+    .project-card p {
+        margin-bottom: 15px;
+        font-size: 1rem;
+    }
+    .project-card .tags {
+        margin-top: 10px;
+    }
+    .project-card .tags span {
+        display: inline-block;
+        background: #e25585;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        margin-right: 5px;
+    }
+    .slider-nav {
+        text-align: center;
+        margin-top: 15px;
+    }
+    .slider-dot {
+        height: 10px;
+        width: 10px;
+        margin: 0 5px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .slider-dot.active {
+        background-color: #FF6B9D;
+        transform: scale(1.3);
+        box-shadow: 0 0 10px #FF6B9D;
+    }
+    .skills-mapping {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+    .skill-box {
+        background: rgba(255, 107, 157, 0.1);
+        padding: 15px 25px;
+        border-radius: 10px;
+        border: 1px solid #FF6B9D;
+        box-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
+        transition: all 0.3s ease;
+        text-align: center;
+        min-width: 120px;
+        flex-grow: 1;
+        max-width: 30%;
+    }
+    .skill-box:hover {
+        transform: translateY(-5px) scale(1.05);
+        background: rgba(255, 107, 157, 0.2);
+        box-shadow: 0 0 25px #FF6B9D;
+    }
+    .skill-box i {
+        font-size: 2rem;
+        color: #FFD4CA;
+        margin-bottom: 5px;
+    }
+    .skill-box p {
+        margin: 0;
+        font-weight: bold;
+    }
+    /* -----------------------------------
+    CONTACT MODAL
+    -------------------------------------- */
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    .contact-button-trigger {
+        background: rgba(255, 107, 157, 0.3);
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid #FF6B9D;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .contact-button-trigger:hover {
+        background: rgba(255, 107, 157, 0.5);
+        box-shadow: 0 0 20px #FF6B9D;
+        transform: scale(1.03);
+    }
+    .contact-button-trigger i {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #FFD4CA;
+    }
+    
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.8); 
+        backdrop-filter: blur(5px);
+    }
+    .modal-content {
+        background-color: rgba(255, 255, 255, 0.1);
+        margin: 15% auto; 
+        padding: 30px;
+        border: 2px solid #FF6B9D;
+        width: 80%; 
+        max-width: 400px;
+        border-radius: 15px;
+        box-shadow: 0 0 40px rgba(255, 107, 157, 0.7);
+        animation: modalopen 0.4s;
+        text-align: center;
+    }
+    .close-btn {
+        color: #FFD4CA;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+    .close-btn:hover,
+    .close-btn:focus {
+        color: #FF6B9D;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .modal-content h3 {
+        color: #FFD4CA;
+        border-bottom: 1px solid #FF6B9D;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    .modal-content a {
+        display: block;
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #FF6B9D;
+        border-radius: 8px;
+        color: #000;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+    .modal-content a:hover {
+        background: #FFD4CA;
+        color: #000;
+    }
+    @keyframes modalopen {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    /* -----------------------------------
+    NEW STYLING: CHATBOT UI
+    -------------------------------------- */
+    #chatbot-container {
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        border: 2px solid #FF6B9D;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+        background: rgba(0, 0, 0, 0.7);
+    }
+    #chat-messages {
+        flex-grow: 1;
+        padding: 15px;
+        overflow-y: auto;
+        border-bottom: 1px solid rgba(255, 107, 157, 0.4);
+    }
+    .message {
+        margin-bottom: 10px;
+        padding: 8px 12px;
+        border-radius: 15px;
+        max-width: 80%;
+        word-wrap: break-word;
+        font-size: 0.95rem;
+        animation: fadeIn 0.5s ease-out;
+    }
+    .user-message {
+        background: #FFD4CA;
+        color: #000;
+        margin-left: auto;
+        border-bottom-right-radius: 0;
+    }
+    .ai-message {
+        background: #FF6B9D;
+        color: #fff;
+        margin-right: auto;
+        border-bottom-left-radius: 0;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    .input-area {
+        display: flex;
+    }
+    #user-input {
+        flex-grow: 1;
+        padding: 15px;
+        border: none;
+        border-right: 1px solid #FF6B9D;
+        background: rgba(0, 0, 0, 0.8);
+        color: #FFD4CA;
+        outline: none;
+        font-size: 1rem;
+    }
+    #user-input:focus {
+        box-shadow: 0 0 10px #FFD4CA;
+    }
+    #send-button {
+        width: 100px;
+        background: #FF6B9D;
+        color: #000;
+        border: none;
+        padding: 15px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+    #send-button:hover:not(:disabled) {
+        background: #FFD4CA;
+        color: #000;
+    }
+    #send-button:disabled {
+        background: #555;
+        cursor: not-allowed;
+    }
+
+    /* -----------------------------------
+    ANIMATIONS & RESPONSIVENESS
+    -------------------------------------- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .shooting-star {
+      position: fixed;
+      top: -10px;
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(white, transparent);
+      opacity: 0.8;
+      transform: rotate(45deg);
+      animation: shooting 2s linear forwards;
+      z-index: 0;
+      pointer-events: none;
+    }
+    @keyframes shooting {
+      from {
+        transform: translateX(0) translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(600px) translateY(600px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .container { padding: 10px; }
+      header { padding: 20px; }
+      .profile-pic { width: 120px; height: 120px; }
+      .menu-button { padding: 10px 15px; margin: 5px; }
+      .modal-content { width: 90%; margin: 50% auto;}
+      .skill-box { max-width: 45%; }
+      #send-button { width: 80px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+  <div class="container">
+    <header>
+      <button class="music-control" onclick="toggleMusic()">▶ Play</button>
+      <img src="https://img1.pixhost.to/images/8670/640112111_zion.jpg" alt="Foto Profil" class="profile-pic">
+      <h1><span id="profile-name" class="typewriter-text">DerrXyzMods</span></h1>
+      <p id="profile-status" class="status">saya adalah seorang pelajar yang masih duduk di bangku sma</p>
+      <p id="profile-bio" class="bio">Web developer yang berfokus pada desain sederhana dan profesional. Saya senang membuat website yang cepat, responsif, dan mudah digunakan.</p>
+
+      <nav>
+          <a href="index.html" class="menu-button active">My Profile</a>
+          <a href="download.html" class="menu-button">Menu Download</a>
+      </nav>
+
+    </header>
+
+    <section>
+      <h2><i class="fas fa-user-astronaut"></i> Tentang Saya</h2>
+      <p id="about-text">Hello, my name is Deri Al Dzikri, I'm a student focused on programming and web development. I'm interested in creating fast, responsive, and user-friendly websites. I'm learning HTML, CSS, and JavaScript to create attractive and functional displays. My goal is to become a professional developer capable of creating digital solutions that benefit many people.
+      </p>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-code-branch"></i> Proyek Terbaru</h2>
+        <div class="project-gallery">
+            <div class="slider" id="project-slider">
+                <div class="project-card">
+                    <h3>Project 01: Profil Neon (This Site)</h3>
+                    <p>Contoh nyata dari desain bertema siber/neon yang Anda inginkan. Dibangun dengan HTML, CSS, dan JavaScript murni untuk performa maksimal.</p>
+                    <div class="tags">
+                        <span>#HTML</span>
+                        <span>#CSS3</span>
+                        <span>#JavaScript</span>
+                        <span>#NeonDesign</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Project 02: Aplikasi Pelajar</h3>
+                    <p>Konsep awal aplikasi manajemen tugas sekolah berbasis web. Fitur termasuk daftar tugas, kalender, dan pengingat deadline.</p>
+                    <div class="tags">
+                        <span>#DesignConcept</span>
+                        <span>#UI/UX</span>
+                        <span>#FuturePlan</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Project 03: Cyber Security Test</h3>
+                    <p>Latihan pribadi menguji kerentanan sistem sederhana menggunakan konsep dasar keamanan jaringan. Fokus pada hardening.</p>
+                    <div class="tags">
+                        <span>#Cybersecurity</span>
+                        <span>#Networking</span>
+                        <span>#PenTest</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-nav" id="slider-nav-dots">
+            </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-brain"></i> Peta Keahlian (Skills Map)</h2>
+        <div class="skills-mapping">
+            <div class="skill-box">
+                <i class="fab fa-html5"></i>
+                <p>HTML & CSS</p>
+            </div>
+            <div class="skill-box">
+                <i class="fab fa-js-square"></i>
+                <p>JavaScript</p>
+            </div>
+            <div class="skill-box">
+                <i class="fas fa-shield-alt"></i>
+                <p>Cyber Defense</p>
+            </div>
+            <div class="skill-box">
+                <i class="fas fa-terminal"></i>
+                <p>Command Line</p>
+            </div>
+            <div class="skill-box">
+                <i class="fas fa-bug"></i>
+                <p>Debugging</p>
+            </div>
+            <div class="skill-box">
+                <i class="fas fa-laptop-code"></i>
+                <p>Responsive Design</p>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+      <h2><i class="fas fa-rocket"></i> Impian Saya</h2>
+      <p id="dream-text">My dream is to become a cybersecurity expert. I want to protect data, systems, and networks from digital threats. I am interested in learning how cyber attacks work and how to prevent them. With cybersecurity knowledge, I hope to contribute to keeping the digital world safe and trustworthy.
+      </p>
+    </section>
+
+    <section id="ai-chat-section">
+        <h2><i class="fas fa-robot"></i> Chat dengan DerrXyzMods-Neon AI</h2>
+        <div id="chatbot-container">
+            <div id="chat-messages">
+                <div class="message ai-message">Halo! Saya adalah AI DerrXyzMods. AI ini masih tahap perkembang, jadi ai belum jadi🙏.</div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Ketik pesan Anda..." onkeydown="handleKeyPress(event)">
+                <button id="send-button" onclick="sendMessage()">Kirim</button>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2><i class="fas fa-handshake"></i> Hubungi Saya</h2>
+        <div class="contact-grid">
+            <div class="contact-button-trigger" onclick="openContactModal('email')">
+                <i class="fas fa-envelope"></i>
+                <p>Kirim Email</p>
+            </div>
+            <div class="contact-button-trigger" onclick="openContactModal('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+                <p>WhatsApp Chat</p>
+            </div>
+            <div class="contact-button-trigger" onclick="openContactModal('linkedin')">
+                <i class="fab fa-linkedin"></i>
+                <p>LinkedIn / Link</p>
+            </div>
+        </div>
+    </section>
+
+  </div>
+  
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeContactModal()">&times;</span>
+      <h3 id="modal-title"></h3>
+      <div id="modal-content-details"></div>
+    </div>
+  </div>
+  
+  <audio id="bg-music" autoplay loop muted>
+    <source src="https://files.catbox.moe/1mqzox.mp3"  type="audio/mpeg">
+  </audio>
+  <script>
+    /* -----------------------------------
+    JAVASCRIPT FOR NEW FEATURES
+    -------------------------------------- */
+    
+    // 1. SLIDER PROJECTS
+    const slider = document.getElementById('project-slider');
+    const dotsContainer = document.getElementById('slider-nav-dots');
+    const cards = document.querySelectorAll('.project-card');
+    let currentSlide = 0;
+
+    function createDots() {
+        cards.forEach((_, index) => {
+            const dot = document.createElement('span');
+            dot.classList.add('slider-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                moveToSlide(index);
+            });
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    function updateDots(index) {
+        document.querySelectorAll('.slider-dot').forEach((dot, i) => {
+            dot.classList.remove('active');
+            if (i === index) dot.classList.add('active');
+        });
+    }
+
+    function moveToSlide(index) {
+        currentSlide = index;
+        const offset = -currentSlide * 100;
+        slider.style.transform = `translateX(${offset}%)`;
+        updateDots(index);
+    }
+    
+    // Auto-slide functionality
+    setInterval(() => {
+        let nextSlide = (currentSlide + 1) % cards.length;
+        moveToSlide(nextSlide);
+    }, 5000);
+
+    createDots();
+    
+    // 2. CONTACT MODAL (POPUP)
+    const modal = document.getElementById("contactModal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDetails = document.getElementById("modal-content-details");
+
+    function openContactModal(type) {
+        let title = "";
+        let content = "";
+
+        switch (type) {
+            case 'email':
+                title = "Kontak via Email";
+                content = `
+                    <p>Email profesional Anda:</p>
+                    <a href="mailto:DerrNotDev@gmail.com" target="_blank"><i class="fas fa-envelope"></i> DerrNotDev@gmail.com</a>
+                `;
+                break;
+            case 'whatsapp':
+                title = "Kontak via WhatsApp";
+                content = `
+                    <p>Nomor WhatsApp (Klik untuk chat):</p>
+                    <a href="https://wa.me/6281617434605" target="_blank"><i class="fab fa-whatsapp"></i> 6281617434605</a>
+                `;
+                break;
+            case 'linkedin':
+                title = "Koneksi Sosial Media";
+                content = `
+                    <p>Ayo terhubung di platform profesional:</p>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn (Link belum diatur)</a>
+                `;
+                break;
+        }
+
+        modalTitle.textContent = title;
+        modalDetails.innerHTML = content;
+        modal.style.display = "block";
+    }
+
+    function closeContactModal() {
+        modal.style.display = "none";
+    }
+
+    // Menutup modal jika klik di luar area
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeContactModal();
+        }
+    }
+    
+    // 3. CHATBOT INTERFACE LOGIC (AI-READY)
+    const chatMessages = document.getElementById('chat-messages');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+
+    function appendMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.classList.add(sender === 'user' ? 'user-message' : 'ai-message');
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+        // Scroll ke pesan terbaru
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return messageDiv; // Mengembalikan elemen yang baru dibuat (berguna untuk indikator 'typing')
+    }
+
+    // Fungsi utama pengiriman pesan yang memanggil backend
+    async function sendMessage() {
+        const messageText = userInput.value.trim();
+        if (messageText === "") return;
+
+        // 1. Tampilkan pesan pengguna
+        appendMessage(messageText, 'user');
+        userInput.value = ''; 
+        sendButton.disabled = true; // Nonaktifkan tombol saat AI berpikir
+
+        // 2. Tampilkan pesan 'typing...' dari AI
+        const typingIndicator = appendMessage('AI sedang mengetik...', 'ai');
+
+        // 3. Kirim pesan ke Backend/Serverless Function
+        try {
+            // URL endpoint harus sesuai dengan hosting serverless Anda (misal Vercel/Netlify)
+            const response = await fetch('/api/chat', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: messageText })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Respons server gagal dengan status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const aiResponse = data.response; 
+
+            // 4. Hapus indikator 'typing...'
+            typingIndicator.remove();
+            
+            // 5. Tampilkan respons AI yang cerdas
+            appendMessage(aiResponse, 'ai');
+
+        } catch (error) {
+            console.error('Error saat menghubungi AI:', error);
+            // Hapus atau ubah indikator typing menjadi pesan error
+            if(typingIndicator) {
+                 typingIndicator.textContent = '[AI Error] Belum DerrXyzMods Perbaiki, Jadi Tunggu DerrXyzMods Perbaiki';
+            }
+        } finally {
+            sendButton.disabled = false; // Aktifkan kembali tombol
+        }
+    }
+    
+    // Fungsi untuk mengirim pesan saat menekan Enter
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    }
+    
+    /* -----------------------------------
+    JAVASCRIPT FOR ORIGINAL FEATURES
+    -------------------------------------- */
+    
+    // Music Toggle
+    const music = document.getElementById("bg-music");
+    const musicBtn = document.querySelector(".music-control");
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.muted = false;
+        music.play();
+        musicBtn.textContent = "⏸ Pause";
+      } else {
+        music.pause();
+        musicBtn.textContent = "▶ Play";
+      }
+    }
+
+    // Partikel dan Shooting Star
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particlesArray;
+    let hue = 0;
+
+    class Particle {
+      constructor(x, y, size, speedX, speedY) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.speedX = speedX;
+        this.speedY = speedY;
+        this.color = `hsl(${hue}, 100%, 60%)`;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        this.color = `hsl(${hue}, 100%, 60%)`;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 120; i++) {
+        let size = Math.random() * 3 + 1;
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let speedX = (Math.random() - 0.5) * 1.5;
+        let speedY = (Math.random() - 0.5) * 1.5;
+        particlesArray.push(new Particle(x, y, size, speedX, speedY));
+      }
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          let dx = particlesArray[a].x - particlesArray[b].x;
+          let dy = particlesArray[a].y - particlesArray[b].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 120) {
+            ctx.strokeStyle = `hsla(${hue}, 100%, 60%, 0.2)`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hue += 0.5;
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    function createStar() {
+      const star = document.createElement("div");
+      star.classList.add("shooting-star");
+      star.style.left = Math.random() * window.innerWidth + "px";
+      star.style.top = Math.random() * 100 + "px";
+      const size = Math.random() * 2 + 1;
+      star.style.width = size + "px";
+      star.style.height = size * 40 + "px";
+      document.body.appendChild(star);
+      setTimeout(() => { star.remove(); }, 2000);
+    }
+
+    setInterval(() => {
+      for (let i = 0; i < 3; i++) {
+        setTimeout(createStar, i * 300);
+      }
+    }, 1500);
+  </script>
+</body>
+</html>
